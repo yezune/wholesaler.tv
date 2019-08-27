@@ -1,11 +1,13 @@
 ## wholesale.tv 
 
+
 wholesaler website
 
 ## Install
 
-`$ cd frontend && node install && cd ..`
-`$ cd server && node install && cd ..`
+
+`$ cd frontend && yarn install && cd ..`
+`$ cd server && yarn install && cd ..`
 
 ## Run arbang
 
