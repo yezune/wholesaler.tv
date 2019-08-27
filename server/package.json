@@ -1,0 +1,37 @@
+{
+  "name": "warehouse_app",
+  "version": "1.0.0",
+  "description": "\"# warehouse_app\"",
+  "scripts": {
+    "backend": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniso95/warehouse_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deniso95/warehouse_app/issues"
+  },
+  "homepage": "https://github.com/deniso95/warehouse_app#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.16.2",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.24.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.4",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
+    "sebak-sdk": "^1.0.2",
+    "uuid": "^3.3.2",
+    "winston": "^2.3.0"
+  }
+}
