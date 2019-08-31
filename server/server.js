@@ -16,6 +16,7 @@ var games = require('./routes/games');
 var logIn = require('./routes/logIn');
 var logOut = require('./routes/logOut');
 var signUp = require('./routes/signUp');
+var videos = require('./routes/videos');
 
 var logger = require('./src/lib/logger');
 
@@ -27,7 +28,6 @@ const PORT = process.env.PORT || 3000;
 mongoose.connect(MONGO_CONNECTION);
 
 var app = express();
-
 
 // Body Parser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -72,6 +72,7 @@ app.use('/api', banks);
 app.use('/api', logIn);
 app.use('/api', logOut);
 app.use('/api', signUp);
+app.use('/api', videos);
 
 app.listen(PORT, function() {
   logger.info(`Server is listening on port ${PORT}`);
