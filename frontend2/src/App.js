@@ -15,6 +15,7 @@ import GameDetail from './pages/GameDetail';
 import RankingMain from './pages/RankingMain';
 import AccountMain from './pages/AccountMain';
 import BosInOutMain from './pages/BosInOutMain';
+import LiveTV from './pages/LiveTV';
 import NotFound from './pages/NotFound';
 
 /* eslint-disable */
@@ -37,6 +38,7 @@ class App extends Component {
               <Route exact path="/boscoin" component={BosInOutMain} />
               <Route path="/game" component={GameDetail} />
               <Route path="/game/:gameId" component={GameDetail} />
+              <Route path="/live/:videId" component={LiveTV} />
               {/* <Route component={NotFound} /> */}
             </Switch>
           </Box>
