@@ -39,7 +39,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Grommet theme={myTheme} full>
+        <Grommet theme={grommetTheme} full>
           <Box fill overflow="auto">
             <Header />
             <Switch>

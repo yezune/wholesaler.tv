@@ -3,7 +3,6 @@ import { Box, Text, Stack } from 'grommet';
 import VideoList from '../components/VideoList';
 import LiveBanner from '../components/LiveBanner';
 import DummyGameData from './DummyGameData';
-import Footer from '../components/Footer';
 
 const Landing = () => (
   <Box flex overflow="auto" direction="column">
@@ -26,25 +25,25 @@ const Landing = () => (
       pad={{ top: 'small', left: 'medium', right: 'medium' }}
     >
       <Box
-        pad={{ top: 'small', left: 'medium' }}
+        pad={{ top: 'small' }}
         gap="xsmall"
         direction="row"
         border={{ color: 'status-warning', size: 'xsmall', side: 'top' }}
       >
         <Text color="status-warning" size="small" weight="bold">Scheduled Broadcasting</Text>
       </Box>
-      <Box pad={{ top: 'medium', right: 'medium' }} gap="small">
+      <Box pad={{ top: 'medium', right: 'medium', bottom: 'medium' }} gap="small">
         <VideoList items={Object.values(DummyGameData)} />
       </Box>
       <Box
-        pad={{ top: 'small', left: 'medium' }}
+        pad={{ top: 'small' }}
         gap="xsmall"
         direction="row"
         border={{ color: 'neutral-3', size: 'xsmall', side: 'top' }}
       >
         <Text color="neutral-3" size="small" weight="bold">Last Broadcasting</Text>
       </Box>
-      <Box pad={{ top: 'medium', right: 'medium' }} gap="small">
+      <Box pad={{ top: 'medium', right: 'medium', bottom: 'medium' }} gap="small">
         <VideoList items={Object.values(DummyGameData)} />
       </Box>
     </Box>
