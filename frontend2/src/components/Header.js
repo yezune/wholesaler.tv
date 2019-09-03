@@ -3,7 +3,7 @@ import { Box, Menu, Heading } from 'grommet';
 import * as Icons from 'grommet-icons';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import WholesalerTv from '-!react-svg-loader!./WholesalerTv.svg';
 
 /* eslint-disable */
 class Header extends Component {
@@ -20,7 +20,7 @@ class Header extends Component {
 
   render() {
     return (
-      <Box
+    <Box
       tag="header"
       background="brand"
       pad="small"
@@ -28,9 +28,17 @@ class Header extends Component {
       justify="between"
       direction="row"
       align="center"
+      height="30px"
     >
+      <Heading level={3} margin="none">
+        <WholesalerTv/>
+        {/* { this.props.authenticated
+          ? <strong>Welcome {this.props.user && this.props.user.email} </strong>
+          : <strong>Wholesaler TV</strong> 
+        } */}
+      </Heading>
       <Menu
-        dropAlign={{ top: 'top', right: 'right' }}
+        dropAlign={{ top: 'top', left: 'left' }}
         items={[
           { label: 'Home', onClick: () => this.handlePageHistory('/') },
           { label: 'Account', onClick: () => this.handlePageHistory('/account') },
@@ -39,12 +47,6 @@ class Header extends Component {
         ]}
         icon={<Icons.Menu color="white" />}
       />
-      <Heading level={3} margin="none">
-        { this.props.authenticated
-          ? <strong>Welcome {this.props.user && this.props.user.email} </strong>
-          : <strong>Wholesaler TV</strong> 
-        }
-      </Heading>
     </Box>
     );
   }

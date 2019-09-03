@@ -5,11 +5,12 @@ import LiveBanner from '../components/LiveBanner';
 import DummyGameData from './DummyGameData';
 
 
-const Landing = props => (
+const Landing = () => (
   <Box flex overflow="auto">
-    {/* <SwipeBanner /> */}
     <LiveBanner
+      width="100%"
       videoId="322430790"
+      fill
     />
     <Box pad={{ top: 'medium' }} gap="small">
       <GameList items={Object.values(DummyGameData)} />

@@ -55,7 +55,10 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader',
+        loader: 'react-svg-loader',
+        options: {
+          jsx: true, // true outputs JSX tags
+        },
       },
       {
         test: /\.(png|jpg|jpeg|svg)$/,
