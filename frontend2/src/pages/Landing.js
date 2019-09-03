@@ -3,7 +3,7 @@ import { Box, Text, Stack } from 'grommet';
 import VideoList from '../components/VideoList';
 import LiveBanner from '../components/LiveBanner';
 import DummyGameData from './DummyGameData';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 
 const Landing = () => (
   <Box flex overflow="auto" direction="column">
