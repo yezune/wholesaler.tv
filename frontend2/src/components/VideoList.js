@@ -1,19 +1,54 @@
 import React from 'react';
-import {
-  Grid, InfiniteScroll, Box,
-} from 'grommet';
-import GameBox from './GameBox';
+import { Box } from 'grommet';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+// import VideoBox from './VideoBox';
+
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "#999999" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "#999999" }}
+      onClick={onClick}
+    />
+  );
+}
+
+const settings = {
+  dots: false,
+  arrows: true,
+  infinite: true,
+  slidesToShow: 5,
+  slidesToScroll: 3,
+  nextArrow: <SampleNextArrow/>,
+  prevArrow: <SamplePrevArrow/>,
+};
 
 const VideoList = ({ items }) => (
-  <Box>
-    <Grid alignSelf="center" columns="xsmall" rows="small" gap="xsmall">
-      <InfiniteScroll items={items} step={12}>
-        {item => (
-          <GameBox key={item._id} item={item} />
-        )}
-      </InfiniteScroll>
-    </Grid>
-  </Box>
+  <Slider {...settings} margin={1}>
+    { items.map((item, index) => (
+        <Box>
+          <img margin="xsmall" src={item.thumbUri} alt={item.title} />
+        </Box>
+      ))}
+  </Slider>
+
 );
 
 export default VideoList;
+
+

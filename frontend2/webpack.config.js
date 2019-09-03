@@ -55,18 +55,27 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'react-svg-loader',
-        options: {
-          jsx: true, // true outputs JSX tags
-        },
+        loader: 'svg-inline-loader',
       },
       {
-        test: /\.(png|jpg|jpeg|svg)$/,
+        test: /\.(png|jpg|jpeg|svg|gif)$/,
         use: 'file-loader?name=[hash:base64:7].[ext]',
       },
       {
         test: /favicon\.ico$/,
         use: 'file-loader?name=[name].[ext]',
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
     ],
   },

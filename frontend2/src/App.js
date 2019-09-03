@@ -10,6 +10,7 @@ import { grommet as grommetTheme } from 'grommet/themes';
 // import { base as baseTheme } from 'grommet/themes';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Landing from './pages/Landing';
 import GameDetail from './pages/GameDetail';
 import RankingMain from './pages/RankingMain';
@@ -17,6 +18,16 @@ import AccountMain from './pages/AccountMain';
 import BosInOutMain from './pages/BosInOutMain';
 import LiveTV from './pages/LiveTV';
 import NotFound from './pages/NotFound';
+
+const myTheme = {
+  global: {
+    colors: {
+      brand: '#4DC0A5',
+      // brand: '#4985F0',
+    },
+  },
+};
+
 
 /* eslint-disable */
 class App extends Component {
@@ -28,7 +39,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Grommet theme={grommetTheme} full>
+        <Grommet theme={myTheme} full>
           <Box fill overflow="auto">
             <Header />
             <Switch>
@@ -41,6 +52,7 @@ class App extends Component {
               <Route path="/live/:videId" component={LiveTV} />
               {/* <Route component={NotFound} /> */}
             </Switch>
+            <Footer/>
           </Box>
         </Grommet>
       </BrowserRouter>
