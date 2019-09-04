@@ -43,7 +43,7 @@ class Header extends Component {
           { label: 'Home', onClick: () => this.handlePageHistory('/') },
           { label: 'Account', onClick: () => this.handlePageHistory('/account') },
           { label: 'Ranking', onClick: () => this.handlePageHistory('/ranking') },
-          { label: 'Asset', onClick: () => this.handlePageHistory('/boscoin') },
+          { label: 'LiveTV', onClick: () => this.handlePageHistory('/live/356830259') },
         ]}
         icon={<Icons.Menu color="white" />}
       />

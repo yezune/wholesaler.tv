@@ -1,20 +1,21 @@
 import React from 'react';
 import Coverflow from 'react-coverflow';
 import { withRouter } from 'react-router-dom';
+import { Box } from 'grommet';
 
-const LiveBanner = () => (
-  <Coverflow width="960" height="500"
-  displayQuantityOfSide={2}
-  navigation
-  enableScroll
-  clickable
-  active={0}
+const LiveBanner = ({ items }) => (
+  <Coverflow
+    width="960"
+    height="500"
+    displayQuantityOfSide={2}
+    navigation
+    enableScroll
+    clickable
+    active={0}
   >
-    <img src="https://via.placeholder.com/400x300.jpg?text=Penalty+Kicks(400x300)" alt="Panalty Kick" data-action="/account"/>
-    <img src="https://via.placeholder.com/400x300.jpg?text=Penalty+Kicks(400x300)" alt="Panalty Kick"/>
-    <img src="https://via.placeholder.com/400x300.jpg?text=Penalty+Kicks(400x300)" alt="Panalty Kick"/>
-    <img src="https://via.placeholder.com/400x300.jpg?text=Penalty+Kicks(400x300)" alt="Panalty Kick"/>
-    <img src="https://via.placeholder.com/400x300.jpg?text=Penalty+Kicks(400x300)" alt="Panalty Kick"/>
+    { items.map((item, index) => (
+      <img key={item._id} src={item.imageUri} alt={item.title} data-action="/account" />
+    ))}
   </Coverflow>
 );
 export default withRouter(LiveBanner);

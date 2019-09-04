@@ -41,12 +41,11 @@ const settings = {
 const VideoList = ({ items }) => (
   <Slider {...settings} margin={1}>
     { items.map((item, index) => (
-        <Box>
-          <img margin="xsmall" src={item.thumbUri} alt={item.title} />
-        </Box>
-      ))}
+      <Box key={item._id}>
+        <img margin="xsmall" src={item.thumbUri} alt={item.title} />
+      </Box>
+    ))}
   </Slider>
-
 );
 
 export default VideoList;
