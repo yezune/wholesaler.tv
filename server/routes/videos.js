@@ -24,26 +24,41 @@ var client = new Vimeo(clientId, clientSecret, clientToken);
 //   return null;
 // }
 
-client.request({
-  method: 'GET',
-  path: '/me/videos'
-}, function (error, body, status_code, headers) {
-  if (error) {
-    console.log(error);
-    process.exit(error);
-  }else{
-    // console.log(body);
-    router.videos = body;
-    console.log("total:", body.total);
-    body.data.forEach((video) => {
-      console.log(video.name,  video.link, video.type);
-    });
-  }
-})
+// client.request({
+//   method: 'GET',
+//   path: '/me/videos'
+// }, function (error, body, status_code, headers) {
+//   if (error) {
+//     console.log(error);
+//     process.exit(error);
+//   }else{
+//     // console.log(body);
+//     router.videos = body;
+//     console.log("total:", body.total);
+//     body.data.forEach((video) => {
+//       console.log(video.name,  video.link, video.type);
+//     });
+//   }
+// });
 
 // Get all games
 router.get('/videos', function(req, res, next) {
-  res.json(router.videos);
+  client.request({
+    method: 'GET',
+    path: '/me/videos'
+  }, function (error, body, status_code, headers) {
+    if (error) {
+      console.log(error);
+      res.status(404).send();
+    }else{
+      // console.log(body);
+      console.log("total:", body.total);
+      body.data.forEach((video) => {
+        console.log(video.name,  video.link, video.type);
+      });
+      res.json(body);
+    }
+  });
 });
 
 // Get single video

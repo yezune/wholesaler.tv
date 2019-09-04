@@ -1,9 +1,8 @@
 import React from 'react';
-import Coverflow from 'react-coverflow';
 import { withRouter } from 'react-router-dom';
-import { Box } from 'grommet';
+import Coverflow from 'react-coverflow';
 
-const LiveBanner = ({ items }) => (
+const LiveBanner = ({ videos }) => (
   <Coverflow
     width="960"
     height="500"
@@ -12,10 +11,14 @@ const LiveBanner = ({ items }) => (
     enableScroll
     clickable
     active={0}
-  >
-    { items.map((item, index) => (
-      <img key={item._id} src={item.imageUri} alt={item.title} data-action="/account" />
-    ))}
+  > 
+    { 
+      videos.data
+        .filter(video => (video.type === 'live'))
+        .map(video => (
+          <img key={video.uri} src={video.pictures.sizes[3].link} alt={video.name} data-action={video.link} />
+        ))
+    }
   </Coverflow>
 );
 export default withRouter(LiveBanner);

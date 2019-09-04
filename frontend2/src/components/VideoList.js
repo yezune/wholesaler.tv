@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from 'grommet';
+import { Box, Text } from 'grommet';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -38,12 +38,15 @@ const settings = {
   prevArrow: <SamplePrevArrow/>,
 };
 
-const VideoList = ({ items }) => (
+const VideoList = ({ videos }) => (
   <Slider {...settings} margin={1}>
-    { items.map((item, index) => (
-      <Box key={item._id}>
-        <img margin="xsmall" src={item.thumbUri} alt={item.title} />
-      </Box>
+    { videos.data
+      .filter(video => (video.type !== 'live'))
+      .map(video => (
+        <Box key={video.uri}>
+          <img margin="xsmall" src={video.pictures.sizes[1].link} alt={video.name} />
+          <Text size="small">{video.name}</Text>
+        </Box>
     ))}
   </Slider>
 );

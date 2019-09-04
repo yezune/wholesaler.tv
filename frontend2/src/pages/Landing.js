@@ -7,45 +7,72 @@ import LiveBanner from '../components/LiveBanner';
 import DummyGameData from './DummyGameData';
 
 
+let VIODES_SERVICE_URL='/api/videos';
 
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
+    this.onReceive = this.onReceive.bind(this);
   }
+
   onClick = (_e) => {
     console.log(_e);
   }
 
-  componentDidMount = () => {
-    let getVideos = () => {
-      axios.get('/api/videos').then((response) => {
-          console.log(response.data);
-          console.log(response.status);
-          console.log(response.statusText);
-          console.log(response.headers);
-          console.log(response.config);
-          this.props.onReceive(response.data);
-          setTimeout(getVideoData, 1000 * 5); // REPEAT THIS EVERy 5 SECONDS
-        });
-      getVideos();
-    }
+  onReceive = ( props ) => {
+    console.log('onReceive');
   }
 
+
+
+  componentDidMount = () => {
+    console.log("componentDidMount");
+
+    let getVideos = () => {
+      this.setState({...this.state, isFetching: true });
+      axios.get(VIODES_SERVICE_URL).then((response) => {
+        this.setState({ videos: response.data, isFetching: false })
+        // console.log(response.data);
+        // console.log(response.status);
+        // console.log(response.statusText);
+        // console.log(response.headers);
+        // console.log(response.config);
+      }).catch(e => console.log(e));
+      setTimeout(getVideos, 1000 * 5); // REPEAT THIS EVERy 5 SECONDS
+    };
+    getVideos();
+  }
+
+  // fetchVideos = () => {
+  //   this.setState({...this.state, isFetching: true });
+  //   axios.get(VIODES_SERVICE_URL)
+  //     .then(response => this.setState({ videos: response.data, isFetching: false }))
+  //     .catch(e => console.log(e));
+  //   setTimeout(this.fetchVideos, 1000 * 5);
+  // }
+
   render() {
+    const { videos } = this.state || {};
+
+    console.log('render()', videos);
+
+    if (!videos)
+      return (<Box align="center"><Text> Loading... </Text></Box>);
+
     return (
       <Box flex overflow="auto" direction="column">
         <Stack anchor="top-left">
           <LiveBanner
-            items={Object.values(DummyGameData)}
+            videos={videos}
           />
           <Box
             background="status-critical"
             pad={{ horizontal: 'xsmall' }}
             round
           >
-            <Text color="white" weight="bold">On Air</Text>
+            <Text color="white" weight="bold">Live</Text>
           </Box>
         </Stack>
         <Box
@@ -61,7 +88,7 @@ class Landing extends React.Component {
             <Text color="status-warning" size="small" weight="bold">Scheduled Broadcasting</Text>
           </Box>
           <Box pad={{ top: 'medium', right: 'medium', bottom: 'medium' }} gap="small">
-            <VideoList items={Object.values(DummyGameData)} />
+            <VideoList videos={videos} />
           </Box>
           <Box
             pad={{ top: 'small' }}
@@ -72,7 +99,7 @@ class Landing extends React.Component {
             <Text color="neutral-3" size="small" weight="bold">Last Broadcasting</Text>
           </Box>
           <Box pad={{ top: 'medium', right: 'medium', bottom: 'medium' }} gap="small">
-            <VideoList items={Object.values(DummyGameData)} />
+            <VideoList videos={videos} />
           </Box>
         </Box>
       </Box>
