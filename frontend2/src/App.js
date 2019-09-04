@@ -49,7 +49,7 @@ class App extends Component {
               <Route exact path="/boscoin" component={BosInOutMain} />
               <Route path="/game" component={GameDetail} />
               <Route path="/game/:gameId" component={GameDetail} />
-              <Route path="/live/:videId" component={LiveTV} />
+              <Route path="/live/:videoId" component={LiveTV} />
               {/* <Route component={NotFound} /> */}
             </Switch>
             <Footer/>
