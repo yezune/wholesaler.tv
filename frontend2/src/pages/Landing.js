@@ -25,8 +25,6 @@ class Landing extends React.Component {
     console.log('onReceive');
   }
 
-
-
   componentDidMount = () => {
     console.log("componentDidMount");
 
@@ -34,13 +32,8 @@ class Landing extends React.Component {
       this.setState({...this.state, isFetching: true });
       axios.get(VIODES_SERVICE_URL).then((response) => {
         this.setState({ videos: response.data, isFetching: false })
-        // console.log(response.data);
-        // console.log(response.status);
-        // console.log(response.statusText);
-        // console.log(response.headers);
-        // console.log(response.config);
       }).catch(e => console.log(e));
-      setTimeout(getVideos, 1000 * 5); // REPEAT THIS EVERy 5 SECONDS
+      setTimeout(getVideos, 1000 * 60); // REPEAT THIS EVERy 5 SECONDS
     };
     getVideos();
   }

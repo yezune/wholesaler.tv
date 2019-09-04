@@ -43,9 +43,9 @@ const VideoList = ({ videos }) => (
     { videos.data
       .filter(video => (video.type !== 'live'))
       .map(video => (
-        <Box key={video.uri}>
-          <img margin="xsmall" src={video.pictures.sizes[1].link} alt={video.name} />
-          <Text size="small">{video.name}</Text>
+        <Box key={video.uri} pad="xxsmall" alignSelf="center">
+          <img margin="xsmall" src={video.pictures.sizes[2].link} alt={video.name} />
+          <Text textAlign="center" width="100%" size="small">{video.name}</Text>
         </Box>
     ))}
   </Slider>

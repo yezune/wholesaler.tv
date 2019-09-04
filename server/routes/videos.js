@@ -52,10 +52,10 @@ router.get('/videos', function(req, res, next) {
       res.status(404).send();
     }else{
       // console.log(body);
-      console.log("total:", body.total);
-      body.data.forEach((video) => {
-        console.log(video.name,  video.link, video.type);
-      });
+      // console.log("total:", body.total);
+      // body.data.forEach((video) => {
+      //   console.log(video.name,  video.link, video.type);
+      // });
       res.json(body);
     }
   });
