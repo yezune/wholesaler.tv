@@ -1,1 +1,1 @@
-ssh -i ~/.ssh/wholesalertv.pem ubuntu@www.wholesaler.tv
+ssh -i ~/.ssh/wholesalertv.pem ubuntu@52.78.177.96
