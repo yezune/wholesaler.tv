@@ -28,7 +28,7 @@ class Header extends Component {
       justify="between"
       direction="row"
       align="center"
-      height="30px"
+      height="40px"
     >
       <Heading level={3} margin="none">
         <WholesalerTv/>
