@@ -42,7 +42,7 @@ class LiveTV extends RouteGotoComponentBase {
           { name: "spacer2", start: [2, 1], end: [2, 1] },
         ]}
         columns={["small", "flex", "270px"]}
-        rows={["medium","flex"]}
+        rows={["large","flex"]}
         gap="xxsmall"
       >
         <Box gridArea="info" background="light-3" >
