@@ -1,16 +1,19 @@
-'use strict';
+"use strict";
 
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-require('dotenv').config();
+require("dotenv").config();
 
 // Vimeo Video Info
-var Vimeo = require('vimeo').Vimeo;
+var Vimeo = require("vimeo").Vimeo;
 
-var clientId=process.env.VIMEO_CLIENT_ID || "797301be7f1ff9e493f3fbe5ce57dc11c9420420";
-var clientSecret=process.env.VIMEO_CLIENT_SECRET || "hVnsxnPd7eL9RKN+ka3L8+Z/ED48aqrVxC2LCPgcAoYpqJWZIDFzChB2IRuFqNslsibQ/qNLF7C5UxMnqeyf4w02hZHhKKLdzAI+Z7CSZ62G4u0fQvTrRQJo6CkJ4dFK";
-var clientToken=process.env.VIMEO_TOKEN || "d016ce474e30b612b88f0bbdbec4e696";
+var clientId =
+  process.env.VIMEO_CLIENT_ID || "797301be7f1ff9e493f3fbe5ce57dc11c9420420";
+var clientSecret =
+  process.env.VIMEO_CLIENT_SECRET ||
+  "hVnsxnPd7eL9RKN+ka3L8+Z/ED48aqrVxC2LCPgcAoYpqJWZIDFzChB2IRuFqNslsibQ/qNLF7C5UxMnqeyf4w02hZHhKKLdzAI+Z7CSZ62G4u0fQvTrRQJo6CkJ4dFK";
+var clientToken = process.env.VIMEO_TOKEN || "d016ce474e30b612b88f0bbdbec4e696";
 
 var client = new Vimeo(clientId, clientSecret, clientToken);
 
@@ -24,50 +27,65 @@ var client = new Vimeo(clientId, clientSecret, clientToken);
 //   return null;
 // }
 
-// client.request({
-//   method: 'GET',
-//   path: '/me/videos'
-// }, function (error, body, status_code, headers) {
-//   if (error) {
-//     console.log(error);
-//     process.exit(error);
-//   }else{
-//     // console.log(body);
-//     router.videos = body;
-//     console.log("total:", body.total);
-//     body.data.forEach((video) => {
-//       console.log(video.name,  video.link, video.type);
-//     });
-//   }
-// });
+function updateVideoInfo(){
+  client.request(
+    {
+      method: "GET",
+      path: "/me/videos"
+    },
+    function(error, body, status_code, headers) {
+      if (error) {
+        console.log(error);
+        process.exit(error);
+      } else {
+        // console.log(body);
+        router.videos = body;
+        // console.log("total:", body.total);
+        // body.data.forEach(video => {
+        //   console.log(video.name, video.link, video.type);
+        // });
+        console.log('update videos info');
+      }
+    }
+  );
+}
+updateVideoInfo();
+setTimeout(updateVideoInfo, 1000 * 5); // timer interval is 5 seconds.
 
 // Get all games
-router.get('/videos', function(req, res, next) {
-  client.request({
-    method: 'GET',
-    path: '/me/videos'
-  }, function (error, body, status_code, headers) {
-    if (error) {
-      console.log(error);
-      res.status(404).send();
-    }else{
-      // console.log(body);
-      // console.log("total:", body.total);
-      // body.data.forEach((video) => {
-      //   console.log(video.name,  video.link, video.type);
-      // });
-      res.json(body);
-    }
-  });
+router.get("/videos", function(req, res, next) {
+  if (router.videos) {
+    res.json(router.videos);
+  } else {
+    client.request(
+      {
+        method: "GET",
+        path: "/me/videos"
+      },
+      function(error, body, status_code, headers) {
+        if (error) {
+          console.log(error);
+          res.status(404).send();
+        } else {
+          // console.log(body);
+          // console.log("total:", body.total);
+          // body.data.forEach((video) => {
+          //   console.log(video.name,  video.link, video.type);
+          // });
+          res.json(body);
+        }
+      }
+    );
+  }
 });
 
 // Get single video
-router.get('/videos/:id', function(req, res, next) {
-  console.log('uri: /videos/' + req.params.id)
-  var id = '/videos/' + req.params.id;
+router.get("/videos/:id", function(req, res, next) {
+  console.log("uri: /videos/" + req.params.id);
+  var id = "/videos/" + req.params.id;
   var NotFound = true;
-  router.videos.data.forEach((video) => {
-    console.log(video.uri, ' == ', id);
+  router.videos.data.forEach(video => {
+    console.log(video.uri, " == ", id);
     if (video.uri == id) {
       res.json(video);
       NotFound = false;

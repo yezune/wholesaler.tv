@@ -50,6 +50,8 @@ class LiveTV extends RouteGotoComponentBase {
         </Box>
         <Box gridArea="video" background="light-3" flex >
           <ReactPlayer
+            playing
+            loop
             controls
             url={`https://vimeo.com/${videoId}`}
             width="100%"

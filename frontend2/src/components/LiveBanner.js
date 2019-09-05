@@ -36,9 +36,11 @@ class LiveBanner extends RouteGotoComponentBase {
         height="500"
         displayQuantityOfSide={2}
         navigation
-        enableScroll
+        infiniteScroll
+        enableScroll={false}
         clickable
         active={0}
+        enableHeading
       >
         {
           videos.data
